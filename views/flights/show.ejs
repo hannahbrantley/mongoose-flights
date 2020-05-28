@@ -35,11 +35,6 @@
             <tr>
               <td><%= d.airport %></td>
               <td><%= d.arrival %></td>
-              <!-- <td>
-                <form action="/flights/<%= flight._id %>/<%= d._id %>?_method=DELETE" class="delete-form" method="POST">
-                <button type="submit">X</button>
-                </form>
-              </td> -->
             </tr>
           <% }); %>
         </tbody>
@@ -47,8 +42,7 @@
     <% } else { %>
       <h5>No Destinations Yet</h5>
     <% } %>
-
-
+  
 <h2>Add Destination</h2>
  <form id="add-destination-form" method="POST"
    action="/flights/<%= flight._id %>/destinations">
@@ -64,5 +58,32 @@
    <input type="datetime-local" name="arrival">
    <input type="submit" value="Add Destination">
  </form>
+
+
+ <h2>Tickets</h2>
+    <% if (tickets) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Seat</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tickets.forEach(function(t) { %>
+              <tr>
+                <td><%= t.seat %></td>
+                <td><%= t.price %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h5>No Tickets Yet</h5>
+      <% } %>
+     </tbody>
+   </table>
+
+   <a href="/flights/<%= flight._id %>/tickets/new" <%- title === 'Add Ticket' %>>New Ticket</a>
 
 <%- include('../partials/footer') %>
